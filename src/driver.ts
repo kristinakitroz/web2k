@@ -1,10 +1,9 @@
-//dodaeni
 export interface driver{
 
-    id: number;
+        id: number;
         name: string;
         iconUrl: string;
-         team: string;
+        team: string;
         category: string;
         points: number;
 

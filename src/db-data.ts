@@ -1,4 +1,4 @@
-//dodaeni
+
 
 export const DRIVERS: any = [
 
@@ -30,7 +30,7 @@ export const DRIVERS: any = [
         id: 4,
         name: "JZ",
         iconUrl: 'https://resources.motogp.pulselive.com/photo-resources/2024/02/19/804f0106-d53b-4052-bbd4-23e41f093ae6/rider-bio_johannzarco.png?height=400&width=600',
-        team: "LCR HONDA",
+        team: "Lcr Honda",
         category: 'ASD',
         points: 10
     },
@@ -39,8 +39,8 @@ export const DRIVERS: any = [
         id: 5,
         name: "Bla",
         iconUrl: 'https://resources.motogp.pulselive.com/photo-resources/2024/02/19/804f0106-d53b-4052-bbd4-23e41f093ae6/rider-bio_johannzarco.png?height=400&width=600',
-        team: "dm dm",
-        category: 'haj',
+        team: "ferrari",
+        category: 'ASD',
         points: 10
     },
     

@@ -1,0 +1,45 @@
+<!--promeneto-->
+
+<div class="karticka" >
+    <div role="heading" aria-level="2" [style.text-decoration]="stilovi()">
+             {{indeks + "." + vozac?.name}} 
+    </div>
+
+    <ng-template role="alert" aria-live="polite" #noImg>
+        Ska slika
+    </ng-template>
+
+
+    <img class="slika"
+    width="300" *ngIf="vozac?.iconUrl; else noImg"
+    [src]="vozac?.iconUrl" 
+    alt="this is a image"
+    role="img"
+    >
+    
+   
+    <div class = "tim">
+        {{vozac?.team}}
+    </div>
+
+    <div [ngSwitch]="vozac?.category">
+      
+        <div *ngSwitchCase="'EXPERT'">EXPERT</div>
+        
+        <div *ngSwitchCase="'LUNATIC'">LUNATIC</div>
+   
+        <div *ngSwitchCase="'ASD'">ASD</div>
+     
+        <div *ngSwitchDefault>No comment</div>
+       
+    </div>
+
+ 
+        <button class = "kopce" (click)="onDrvView()">Klikni me</button>
+    
+    <div>
+        &nbsp;
+    </div>
+
+</div>
+
