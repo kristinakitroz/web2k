@@ -1,45 +1,138 @@
 <!--promeneto-->
-
 <div class="karticka" >
-    <div role="heading" aria-level="2" [style.text-decoration]="stilovi()">
-             {{indeks + "." + vozac?.name}} 
-    </div>
+        <!-- Opisen tekst -->
+  <div id="description-{{indeks}}" class="description">
+    Vozac {{vozac?.name}} e del od timot {{vozac?.team}} vo kategorijata {{vozac?.category}}.
+  </div> 
 
-    <ng-template role="alert" aria-live="polite" #noImg>
-        Ska slika
-    </ng-template>
-
-
-    <img class="slika"
-    width="300" *ngIf="vozac?.iconUrl; else noImg"
-    [src]="vozac?.iconUrl" 
-    alt="this is a image"
-    role="img"
-    >
-    
-   
-    <div class = "tim">
-        {{vozac?.team}}
-    </div>
-
-    <div [ngSwitch]="vozac?.category">
-      
-        <div *ngSwitchCase="'EXPERT'">EXPERT</div>
-        
-        <div *ngSwitchCase="'LUNATIC'">LUNATIC</div>
-   
-        <div *ngSwitchCase="'ASD'">ASD</div>
-     
-        <div *ngSwitchDefault>No comment</div>
-       
-    </div>
-
- 
-        <button class = "kopce" (click)="onDrvView()">Klikni me</button>
-    
-    <div>
-        &nbsp;
-    </div>
-
+<div role="heading" aria-level="2" 
+[style.text-decoration]="stilovi()"
+[attr.aria-describedby]="'description-' + indeks">
+         {{indeks + "." + vozac?.name}} 
+        <!--primer 1.Peco-->
+        <!--aria-describedby-->
 </div>
 
+ <!-- Kopce so tooltip -->
+ <button class="kopce"
+ [attr.aria-labelledby]="'tooltip-' + (indeks ?? 0)"
+ (mouseenter)="toggleTooltip(indeks ?? 0)" (mouseleave)="toggleTooltip(indeks ?? 0)">
+Pokazi Tooltip
+</button>
+
+<!-- Tooltip -->
+<div id="tooltip-{{indeks ?? 0}}" 
+role="tooltip" 
+[ngClass]="{'visible-tooltip': isTooltipVisible[indeks ?? 0], 'hidden': !isTooltipVisible[indeks ?? 0]}">
+Ova e tooltip za vozacot {{vozac?.name}}.
+</div>
+
+<!--aria-live-->
+<!--Poraka koja kazuva deka nedostasuva slika-->
+<ng-template role="alert" aria-live="polite" #noImg>
+    Ska slika
+</ng-template>
+
+
+<img class="slika"
+width="300" *ngIf="vozac?.iconUrl; else noImg"
+[src]="vozac?.iconUrl" 
+alt="this is a image"
+role="img"
+[attr.aria-label]="'Icon image for ' + vozac?.name"
+[attr.aria-describedby]="'description-' + indeks">
+<!-- Aria-label -->
+
+<div class = "tim">
+    {{vozac?.team}}
+</div>
+
+<div [ngSwitch]="vozac?.category">
+  
+    <div *ngSwitchCase="'EXPERT'">EXPERT</div>
+    
+    <div *ngSwitchCase="'LUNATIC'">LUNATIC</div>
+
+    <div *ngSwitchCase="'ASD'">ASD</div>
+ 
+    <div *ngSwitchDefault>No comment</div>
+   
+</div>
+
+
+    <button class = "kopce" (click)="onDrvView()">Klikni me</button>
+
+   
+
+<div>
+    &nbsp;
+</div>
+
+ <!-- Kopce so aria-expanded -->
+ <button class="kopce" id="toggle-{{indeks}}"
+ [attr.aria-expanded]="indeks !== undefined && expandedIndices[indeks] ? 'true' : 'false'"
+ (click)="toggleDetails(indeks)">
+Poveke detali
+</button>
+
+<!-- Detali -->
+<!--aria-hidden-->
+<!--aria role="region"-->
+<div id="details-{{indeks}}" 
+[class.hidden]="indeks === undefined || !expandedIndices[indeks]"
+role="region" 
+[attr.aria-labelledby]="'toggle-' + indeks" 
+[attr.aria-hidden]="indeks === undefined || !expandedIndices[indeks]">
+Ova se detalite za vozacot {{vozac?.name}}. Timot e {{vozac?.team}}. Kategorijata e {{vozac?.category}}.
+</div>
+
+<!--aria-expanded samo za Peco-->
+<!--
+<div *ngIf="vozac?.name === 'Peco'" [ngClass]="klasi2()">
+<div class="karticka">
+  <div class="heading" role="heading" aria-level="2">
+    {{ indeks + ". " + vozac?.name }}
+  </div>-->
+
+  <!-- Dinamicko kopce so aria-expanded -->
+   <!--
+   <button class="kopce" id="toggle-peco"
+   [attr.aria-expanded]="isDetailsVisible ? 'true' : 'false'"
+   (click)="toggleDetails()">
+    Poveke detali
+    </button>-->
+
+  <!-- Detali za Peco -->
+<!--
+  <div id="details-peco" [class.hidden]="!isDetailsVisible" role="region" aria-labelledby="toggle-peco">
+    Ova se detalite za vozacot Peco. Timot e Ducati.
+  </div>
+</div>
+</div>-->
+
+ <!-- Aria-invalid -->
+ <div>
+    <label for="Ocena-{{indeks}}">Ocena (1-10):</label>
+    <input
+    type="number"
+    [(ngModel)]="ratings[getValidIndex(indeks)]"
+    (blur)="onRatingChange(getValidIndex(indeks))"
+    [attr.aria-invalid]="isInvalid(getValidIndex(indeks)) ? 'true' : 'false'"
+    [attr.aria-busy]="isProcessing ? 'true' : 'false'"
+ />
+
+<!-- Vizuelno izvestuvanje koga se obrabotuva nesto so aria-busy -->
+<div *ngIf="isProcessing" class="loading-message">
+    Ve molime pocekajte, obrabotuvame podatoci...
+  </div>
+<!--aria-live so visual feedback-->
+    <div 
+  role="alert" 
+  aria-live="assertive" 
+  class="error-message"
+  *ngIf="isInvalid(getValidIndex(indeks))&& !isProcessing"
+>
+  Greska:Ocenata mora da bide pomegu 1 i 10.
+    </div>
+</div>
+</div>

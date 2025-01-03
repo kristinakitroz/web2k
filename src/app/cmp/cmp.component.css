@@ -1,44 +1,101 @@
 /*promeneto*/
 .karticka {
-   background-color: #9e939c;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-.slika {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-    border-radius: 8px;
-    margin: 15px 0;
-    transition: transform 0.4s ease;
-}
-
-.slika:hover {
-    transform: scale(1.3);
-}
-
-.tim {
-    font-size: 18px;
-    color: black;
-    margin: 20px 0;
-    border-bottom: 2px solid #f0f0f0;
-}
-
-.kopce {
-    background-color: #66a8ef;
+    background-color: #9e939c;
+     border-radius: 12px;
+     padding: 20px;
+     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+     text-align: center;
+     margin-bottom: 15px;
+ }
+ 
+ .slika {
+     width: 100%;
+     max-width: 300px;
+     height: auto;
+     border-radius: 8px;
+     margin: 15px 0;
+     transition: transform 0.4s ease;
+ }
+ 
+ .slika:hover {
+     transform: scale(1.3);
+ }
+ 
+ .tim {
+     font-size: 18px;
+     color: black;
+     margin: 20px 0;
+     border-bottom: 2px solid #f0f0f0;
+ }
+ 
+ .kopce {
+     background-color: #ef96da;
+     color: white;
+     border: none;
+     padding: 10px 25px;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 16px;
+     transition: background-color 0.3s ease;
+ }
+ 
+ .kopce:hover {
+     background-color: #e370c8;
+ }
+ /*ariadescribedby so visual styling */
+ .description {
+     font-size: 20px;
+     color: #e370c8; 
+     background-color: #f9f9f9; 
+     border: 1px solid #ddd; 
+     padding: 10px;
+     border-radius: 5px;
+     margin-top: 10px;
+   }
+   
+.hidden {
+     display: none;
+ }
+ .tooltip {
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    z-index: 1000;
+    white-space: nowrap;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+  
+  .tooltip.hidden {
+    visibility: hidden;
+    opacity: 0;
+  }
+  .tooltip {
+    display: none;
+    position: absolute;
+    background-color: #333;
     color: white;
-    border: none;
-    padding: 10px 25px;
+    padding: 5px;
     border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-.kopce:hover {
-    background-color: darkblue;
-}
+    z-index: 10;
+  }
+  .visible-tooltip {
+    display: block; 
+  }
+  .error-message {
+    color:#000000;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  input[aria-invalid="true"] {
+    border: 1px solid #e370c8;
+  }
+  
+  button:disabled {
+    background-color: gray;
+  }
