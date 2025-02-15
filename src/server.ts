@@ -10,7 +10,7 @@ import { fileURLToPath } from 'node:url';
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
-
+console.log('Browser dist folder path:', browserDistFolder); // Испечати го патот
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
