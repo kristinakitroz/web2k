@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CmpComponent } from "./cmp/cmp.component";
 import { DRIVERS } from '../db-data'; 
+//../ se vraka eden direktorium nanazad od tekovniot
 import { CommonModule } from '@angular/common';  
 
 @Component({

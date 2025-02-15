@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { driver } from '../../driver';
+// ../../ se vraka dva direktoriumi nanazad od tekovniot
 import { CommonModule } from '@angular/common'; 
 import { FormsModule } from '@angular/forms'; 
 @Component({
@@ -35,8 +36,8 @@ export class CmpComponent {
     }
 
     window.open(link, "_blank");
-    
   }
+
 
 expandedIndices: { [key: number]: boolean } = {};
 

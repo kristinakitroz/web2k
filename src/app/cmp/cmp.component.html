@@ -10,7 +10,7 @@
 [attr.aria-describedby]="'description-' + indeks">
          {{indeks + "." + vozac?.name}} 
         <!--primer 1.Peco-->
-        <!--aria-describedby-->
+        <!--aria-describedby e vo konzola-->
 </div>
 
  <!-- Kopce so tooltip -->
@@ -19,6 +19,7 @@
  (mouseenter)="toggleTooltip(indeks ?? 0)" (mouseleave)="toggleTooltip(indeks ?? 0)">
 Pokazi Tooltip
 </button>
+<!--tooltip se pojavuva vo konzola -->
 
 <!-- Tooltip -->
 <div id="tooltip-{{indeks ?? 0}}" 
@@ -26,6 +27,7 @@ role="tooltip"
 [ngClass]="{'visible-tooltip': isTooltipVisible[indeks ?? 0], 'hidden': !isTooltipVisible[indeks ?? 0]}">
 Ova e tooltip za vozacot {{vozac?.name}}.
 </div>
+<!--visible koga odi hover gluvce nad kopce-->
 
 <!--aria-live-->
 <!--Poraka koja kazuva deka nedostasuva slika-->
@@ -41,7 +43,7 @@ alt="this is a image"
 role="img"
 [attr.aria-label]="'Icon image for ' + vozac?.name"
 [attr.aria-describedby]="'description-' + indeks">
-<!-- Aria-label -->
+<!-- Aria-label vo konzola-->
 
 <div class = "tim">
     {{vozac?.team}}
@@ -69,15 +71,17 @@ role="img"
 </div>
 
  <!-- Kopce so aria-expanded -->
+ <!--koga ke e prosireno kopceto vo konzola e true-->
  <button class="kopce" id="toggle-{{indeks}}"
  [attr.aria-expanded]="indeks !== undefined && expandedIndices[indeks] ? 'true' : 'false'"
  (click)="toggleDetails(indeks)">
 Poveke detali
 </button>
+<!--ako dvata uslovi se ispolneti ke e aria expanded true inaku ke e false-->
 
 <!-- Detali -->
 <!--aria-hidden-->
-<!--aria role="region"-->
+<!--aria role="region"za nekoja oblast bitna-->
 <div id="details-{{indeks}}" 
 [class.hidden]="indeks === undefined || !expandedIndices[indeks]"
 role="region" 
@@ -85,6 +89,8 @@ role="region"
 [attr.aria-hidden]="indeks === undefined || !expandedIndices[indeks]">
 Ova se detalite za vozacot {{vozac?.name}}. Timot e {{vozac?.team}}. Kategorijata e {{vozac?.category}}.
 </div>
+<!--hideen vo konsola e true koga se skrieni dop info-->
+<!--ako nekoj od gore uslovite  e ispolnet atr aria hidden ke e true-->
 
 <!--aria-expanded samo za Peco-->
 <!--
@@ -120,6 +126,7 @@ Ova se detalite za vozacot {{vozac?.name}}. Timot e {{vozac?.team}}. Kategorijat
     [attr.aria-invalid]="isInvalid(getValidIndex(indeks)) ? 'true' : 'false'"
     [attr.aria-busy]="isProcessing ? 'true' : 'false'"
  />
+<!--aria invalid i busy ova e za vo konzola, za ratingot -->
 
 <!-- Vizuelno izvestuvanje koga se obrabotuva nesto so aria-busy -->
 <div *ngIf="isProcessing" class="loading-message">
